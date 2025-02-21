@@ -9,7 +9,7 @@ export default function Error404() {
       <Head>
         <title>404 - Page not found</title>
       </Head>
-      <Layout.Background disableFooter={true}>
+      <Layout.Page disableFooter={true}>
         <Layout.Element>
           <Text.Title>404 - Page not found</Text.Title>
           <br />
@@ -21,7 +21,7 @@ export default function Error404() {
             text="Go back home"
           />
         </Layout.Element>
-      </Layout.Background>
+      </Layout.Page>
     </>
   );
 }

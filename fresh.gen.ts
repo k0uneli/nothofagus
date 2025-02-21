@@ -6,7 +6,7 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $videos from "./routes/videos.tsx";
-
+import * as $Media from "./islands/Media.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -16,7 +16,9 @@ const manifest = {
     "./routes/index.tsx": $index,
     "./routes/videos.tsx": $videos,
   },
-  islands: {},
+  islands: {
+    "./islands/Media.tsx": $Media,
+  },
   baseUrl: import.meta.url,
 } satisfies Manifest;
 

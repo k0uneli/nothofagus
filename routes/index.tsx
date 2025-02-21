@@ -10,7 +10,7 @@ export default function Home() {
         <title>Nothofagus</title>
       </Head>
 
-      <Layout.Background disableFooter={true}>
+      <Layout.Page disableFooter={true}>
         <Layout.Element>
           <Text.Title>
             Nothofagus
@@ -19,7 +19,7 @@ export default function Home() {
           <Button href="/videos" text="Start Watching">
           </Button>
         </Layout.Element>
-      </Layout.Background>
+      </Layout.Page>
     </>
   );
 }
