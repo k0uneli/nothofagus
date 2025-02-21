@@ -4,7 +4,7 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_getVideo from "./routes/api/getVideo.ts";
+import * as $api_video from "./routes/api/video.ts";
 import * as $index from "./routes/index.tsx";
 import * as $videos from "./routes/videos.tsx";
 import * as $Media from "./islands/Media.tsx";
@@ -14,7 +14,7 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/getVideo.ts": $api_getVideo,
+    "./routes/api/video.ts": $api_video,
     "./routes/index.tsx": $index,
     "./routes/videos.tsx": $videos,
   },

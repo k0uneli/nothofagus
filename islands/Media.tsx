@@ -1,6 +1,6 @@
 
 export default function Media() {
-  const src = "/api/getVideo";
+  const src = "/api/video";
 
   return (
     <video width="480" height="720" controls>
