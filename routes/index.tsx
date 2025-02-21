@@ -10,7 +10,12 @@ export default function Home() {
         <title>Nothofagus</title>
       </Head>
 
-      <Layout.Page disableFooter={true}>
+      <Layout.Page
+        footerProps={{
+          disableButton: true,
+          authorProps: { link: "", name: "William Spongberg and Lucas" },
+        }}
+      >
         <Layout.Element>
           <Text.Title>
             Nothofagus
