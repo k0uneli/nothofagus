@@ -19,7 +19,7 @@ export function Title({ textColour = TEXT_COLOUR, children }: TextProps) {
 
 export function Heading({ textColour = TEXT_COLOUR, children }: TextProps) {
   return (
-    <h2 class={`text-xl sm:text-2xl font-bold ${textColour} text-center`}>
+    <h2 class={`text-xl sm:text-2xl font-bold py-2 px-2 ${textColour} text-center`}>
       {children}
     </h2>
   );
@@ -27,7 +27,7 @@ export function Heading({ textColour = TEXT_COLOUR, children }: TextProps) {
 
 export function SubHeading({ textColour = TEXT_COLOUR, children }: TextProps) {
   return (
-    <h3 class={`text-lg sm:text-xl font-bold ${textColour} text-center`}>
+    <h3 class={`text-lg sm:text-xl font-bold py-1 px-1 ${textColour} text-center`}>
       {children}
     </h3>
   );

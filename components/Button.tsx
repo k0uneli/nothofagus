@@ -1,6 +1,6 @@
 import { ComponentChildren } from "preact";
 
-interface ButtonProps {
+export interface ButtonProps {
   href: string;
   text: string;
   textColour?: string;
