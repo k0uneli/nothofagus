@@ -1,5 +1,10 @@
 import { Handlers } from "$fresh/server.ts";
-import { VIDEO_SRC, NUM_BLOCKS_PER_REQ, BLOCK_SIZE, VIDEO_BLOCK_SIZE } from "../../global/constants.ts";
+import {
+  BLOCK_SIZE,
+  NUM_BLOCKS_PER_REQ,
+  VIDEO_BLOCK_SIZE,
+  VIDEO_SRC,
+} from "../../global/constants.ts";
 
 async function getVideoSize() {
   try {
@@ -10,12 +15,45 @@ async function getVideoSize() {
     throw new Error("Error getting video size!");
   }
 }
- 
-export const handler: Handlers<null> = {
-  async GET(req, _ctx) {
-    console.log(req);
-    console.log(req.headers.get("range"));
 
+function streamVideo(video: Deno.FsFile): ReadableStream<Uint8Array> {
+  let blocksRead = NUM_BLOCKS_PER_REQ;
+  return new ReadableStream({
+    async pull(controller) {
+      if (blocksRead > 0) {
+        const block = new Uint8Array(BLOCK_SIZE);
+        try {
+          const nread = await video.read(block);
+          // no more data to read, close stream
+          if (nread === null) {
+            console.log("No more data to read, closing stream");
+            controller.close();
+            video.close();
+            return;
+          }
+
+          // decrement blocks read and push data to stream
+          blocksRead--;
+          controller.enqueue(block.subarray(0, nread));
+          console.log(`Read ${nread} bytes from video`);
+        } catch (e) {
+          console.error(e);
+          controller.error(e);
+          video.close();
+          return;
+        }
+      } else {
+        // out of blocks to read, close stream early
+        console.error("Out of blocks to read, closing stream early");
+        controller.close();
+        video.close();
+      }
+    },
+  });
+}
+
+export const handler: Handlers<unknown, unknown> = {
+  async GET(req, _ctx) {
     // grab video size
     let videoSize = 0;
     try {
@@ -30,12 +68,39 @@ export const handler: Handlers<null> = {
       return new Response("No range found in header!", { status: 400 });
     }
 
+    // get start + end of video
     const start = parseInt(range.split("-")[0]);
-    const end = Math.min(start + VIDEO_BLOCK_SIZE, videoSize);
+    const end = Math.min(start + VIDEO_BLOCK_SIZE, videoSize - 1);
+    console.log(
+      `start: ${start}, end: ${end}. video is ${videoSize / BLOCK_SIZE} MB`,
+    );
 
-    console.log(`start: ${start}, end: ${end}`);
+    // check if range is valid
+    if (start >= videoSize || end >= videoSize) {
+      // can't provide resource, code 416
+      console.error(
+        `Invalid range: start: ${start}, end: ${end}, video size: ${videoSize}`,
+      );
+      return new Response("Invalid range!", { status: 416 });
+    }
 
-    const video = await Deno.readFile(VIDEO_SRC);
-    return new Response(video, { status: 200 });
-  }
+    // read video file
+    const video = await Deno.open(VIDEO_SRC, { read: true });
+
+    // skip to start of video
+    if (start > 0) {
+      await video.seek(start, Deno.SeekMode.Start);
+    }
+
+    // return partial video stream, code 206
+    return new Response(streamVideo(video), {
+      status: 206,
+      headers: {
+        "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+        "Accept-Ranges": "bytes",
+        "Content-Length": `${end - start + 1}`,
+        "Content-Type": "video/mp4",
+      },
+    });
+  },
 };
