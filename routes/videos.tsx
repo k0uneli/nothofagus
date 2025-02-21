@@ -1,6 +1,6 @@
 import * as Layout from "../components/Layout.tsx";
-import * as Text from "../components/Text.tsx";
 import { Head } from "$fresh/runtime.ts";
+import Media from "../islands/Media.tsx";
 
 export default function Home() {
   return (
@@ -9,14 +9,11 @@ export default function Home() {
         <title>Videos</title>
       </Head>
 
-      <Layout.Background>
+      <Layout.Page>
         <Layout.Element>
-          <Text.Title>
-            Videos
-          </Text.Title>
-          <br />
+          <Media />
         </Layout.Element>
-      </Layout.Background>
+      </Layout.Page>
     </>
   );
 }
