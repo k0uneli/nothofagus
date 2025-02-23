@@ -43,7 +43,7 @@ export default function Media() {
   return (
     <section class="relative inline-block">
       <button type="button" class="relative z-[1]" onClick={handleToggle}>
-        <video ref={videoRef} autoPlay class="max-w-md rounded-lg">
+        <video ref={videoRef} autoPlay loop class="max-w-md rounded-lg">
           <source src={src} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
