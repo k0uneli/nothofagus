@@ -15,7 +15,7 @@ Nothofagus is a proof-of-concept clone of Vine featuring a TikTok-inspired recom
 
 - **Frontend/Backend:** Built with Deno and the Fresh framework.
 - **Deployment:** Deployed to Deno Deploy. Optionally, if want to scale, deploy in a Docker container to Google Cloud Run <https://docs.deno.com/examples/google_cloud_run_tutorial/>.
-- **User Authentication:** Implemented via GitHub OAuth Apps. See <https://deno.land/x/deno_kv_oauth@v0.10.0>. Note per user max 5000 requests per hour - unlikely to matter, only using to authenticate.
+- **User Authentication:** Implemented via [GitHub OAuth Apps](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps). See <https://deno.land/x/deno_kv_oauth@v0.10.0>. Note per user max 5000 requests per hour - unlikely to matter, only using to authenticate.
 - **Databases:**
   - Videos: Hosted in a filesystem either locally. Costs could become high due to large bandwidth, but total storage remains low. Can buy cheap server to run this.
   - Video metadata: This will be a small file attached to each video that contains stats about each video e.g. number of likes, number of reports, user who posted, position in video array, etc. This is best stored in the Deno KV due to its small size and high bandwidth.
@@ -26,7 +26,7 @@ Nothofagus is a proof-of-concept clone of Vine featuring a TikTok-inspired recom
 - **Comments:** Add comments to videos. Again, limiting the number of comments somehow.
 - **Payments:** Switch to Lemon Squeezy or Polar for payment systems if eventually plan to add paid tiers for e.g. being able to post more videos per day.
 - **Captcha:** Currently making this invite-only, but will need some sort of captcha in the future to avoid bots.
-- **User Authentication:** Not many people will have GitHub accounts - will need to add support for at minimum Google.
+- **User Authentication:** Not many people will have GitHub accounts - will need to add support for at minimum Google. Will also need to expire session tokens, etc (more security). Not sure if Github OAuth supports this.
 - **Reporting:** Use some algorithm to balance users who report everything vs users who don't report anything (want to avoid people trolling and reporting every video). Videos getting deleted after 5 reports WILL be abused by a large userbase.
 - **Databases:** Should store user videos in some high-performance external server if enough traffic picks up, to allow streaming to users around the world.
 
