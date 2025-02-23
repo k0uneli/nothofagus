@@ -22,6 +22,8 @@ Nothofagus is a proof-of-concept clone of Vine featuring a TikTok-inspired recom
   - Video metadata: This will be a small file attached to each video that contains stats about each video e.g. number of likes, number of reports, user who posted, position in video array, etc. This is best stored in the Deno KV due to its small size and high bandwidth. Might need to turn this into a proper database for better use and querying (important for helping the recommendation system perform).
 - **Machine Learning:** A Python service processes TikTok-style recommendations. This is intended to be run by some external server, but will likely be run locally until production is ready.
 
+## Metadata
+
 ``` typescript
 interface VideoData {
   id: string         // UUID attached to video
