@@ -9,11 +9,7 @@ export default function Videos() {
         <title>Videos</title>
       </Head>
 
-      <Layout.Page
-        footerProps={{
-          authorProps: { link: "", name: "William Spongberg and Lucas" },
-        }}
-      >
+      <Layout.Page>
         <Media />
       </Layout.Page>
     </>
