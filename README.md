@@ -15,6 +15,7 @@ Nothofagus is a proof-of-concept clone of Vine featuring a TikTok-inspired recom
 ## Architecture
 
 - **Frontend/Backend:** Built with Deno and the Fresh framework.
+- **Deployment:** Deployed to Deno Deploy. Optionally, if want to scale, deploy in Docker container to Google Cloud Run <https://docs.deno.com/examples/google_cloud_run_tutorial/>.
 - **User Authentication:** Implemented via Github OAuth, with user data stored in Deno KV. See <https://deno.land/x/deno_kv_oauth@v0.10.0>.
 - **Database:** Evaluating options for optimal video query performance.
 - **Machine Learning:** A Python service processes TikTok-style recommendations.
