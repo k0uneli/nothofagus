@@ -4,7 +4,10 @@ import * as Icons from "../components/Icons.tsx";
 export default function Media() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const src = "/api/video";
+
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isReported, setIsReported] = useState(false);
 
   const handleToggle = () => {
     if (isPlaying) {
@@ -18,6 +21,9 @@ export default function Media() {
 
   const handleLike = (e: MouseEvent) => {
     e.stopPropagation();
+    if (isLiked) return;
+
+    setIsLiked(true);
     // TODO: send api POST call
     console.log("Video liked!");
   };
@@ -35,6 +41,8 @@ export default function Media() {
 
   const handleReport = (e: MouseEvent) => {
     e.stopPropagation();
+    if (isReported) return;
+
     // TODO: send api POST call
     console.log("Video reported!");
   };
