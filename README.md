@@ -17,9 +17,9 @@ Nothofagus is a proof-of-concept clone of Vine featuring a TikTok-inspired recom
 - **Deployment:** Deployed to Deno Deploy. Optionally, if want to scale, deploy in a Docker container to Google Cloud Run <https://docs.deno.com/examples/google_cloud_run_tutorial/>.
 - **User Authentication:** Implemented via [GitHub OAuth Apps](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps). See [Deno KV OAuth](https://deno.land/x/deno_kv_oauth@v0.10.0). Note per user max 5000 requests per hour - unlikely to matter, only using to authenticate.
 - **Databases:**
-  - Users: Stored in KV. Storage and general usage handled entirely by [Deno KV OAuth](https://deno.land/x/deno_kv_oauth@v0.10.0).
+  - Users: Stored in KV. Storage and general usage handled entirely by [Deno KV OAuth](https://deno.land/x/deno_kv_oauth@v0.10.0). User metadata is also stored in KV, but might move to some proper database for better use and querying.
   - Videos: Hosted in a filesystem either locally. Costs could become high due to large bandwidth, but total storage remains low. Can buy a cheap server to run this. Interact with using REST API (normal HTTP requests).
-  - Video metadata: This will be a small file attached to each video that contains stats about each video e.g. number of likes, number of reports, user who posted, position in video array, etc. This is best stored in the Deno KV due to its small size and high bandwidth. Might need to turn this into a proper database for better use and querying by the recommendation system.
+  - Video metadata: This will be a small file attached to each video that contains stats about each video e.g. number of likes, number of reports, user who posted, position in video array, etc. This is best stored in the Deno KV due to its small size and high bandwidth. Might need to turn this into a proper database for better use and querying (important for helping the recommendation system perform).
 - **Machine Learning:** A Python service processes TikTok-style recommendations. This is intended to be run by some external server, but will likely be run locally until production is ready.
 
 ``` typescript
@@ -32,15 +32,27 @@ interface VideoData {
 }
 ```
 
+``` typescript
+interface UserData {
+  id: string         // likely the email attached to account?
+  posts: string[]    // ids of all videos posted by user
+  likes: string[]    // ids of all liked videos
+  banned: boolean    // flag for whether user is banned from platform
+}
+```
+
 ## Future Development + Scaling
 - **Number of Videos:** Might be interesting to scale the max number of videos directly by: the number of active users for the day / 100. Or could just use some arbitrary number, or have users vote the day before. Not sure, fun to experiment!
 - **Comments:** Add comments to videos. Again, limiting the number of comments somehow.
+- **Statistics:** Would be fun to publicly share statistics with user base, and even to have a bar actively on the side showing you how many videos you've liked, how long spent on app, etc. Could even add leaderboards!
+- **Legal Stuff:** Will need to add privacy policy + terms and conditions. Also not sure if we will get blamed if bad videos are posted.
 - **Compression:** Might be helpful for costs to compress/decompress information, especially videos, once a certain scale is hit. Not sure if worthwhile yet.
 - **Payments:** Switch to Lemon Squeezy or Polar for payment systems if eventually plan to add paid tiers for e.g. being able to post more videos per day.
 - **Captcha:** Currently making this invite-only, but will need some sort of captcha in the future to avoid bots.
 - **User Authentication:** Not many people will have GitHub accounts - will need to add support for at minimum Google. Will also need to expire session tokens, etc (more security). Not sure if GitHub OAuth supports this.
 - **Reporting:** Use some algorithm to balance users who report everything vs users who don't report anything (want to avoid people trolling and reporting every video). Videos getting deleted after 5 reports WILL be abused by a large user base.
 - **Databases:** Should store user videos in some high-performance external server if enough traffic picks up, to allow streaming to users around the world.
+- **Mobile:** This is a big one - requires upending the frontend stack and changing to Flutter, or something similar. Doubt we'll come this far, only necessary if this REALLY takes off.
 
 ## Developers
 
