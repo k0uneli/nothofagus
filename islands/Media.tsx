@@ -1,6 +1,5 @@
 import { useRef, useState } from "preact/hooks";
 import * as Icons from "../components/Icons.tsx";
-import Toastify from "npm:toastify-js";
 
 export default function Media() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,6 +52,7 @@ export default function Media() {
         <div class="flex flex-col space-y-4">
           <button
             type="button"
+            title="Like"
             onClick={handleLike}
             class="px-4 py-2  text-white rounded"
           >
@@ -60,6 +60,7 @@ export default function Media() {
           </button>
           <button
             type="button"
+            title="Share"
             onClick={handleShare}
             class="px-4 py-2  text-white rounded"
           >
@@ -67,6 +68,7 @@ export default function Media() {
           </button>
           <button
             type="button"
+            title="Report"
             onClick={handleReport}
             class="px-4 py-2  text-white rounded"
           >
