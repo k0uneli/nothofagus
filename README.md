@@ -33,6 +33,7 @@ interface VideoData {
 ```
 
 ## Future Development + Scaling
+- **Number of Videos:** Might be interesting to scale the max number of videos directly by: the number of active users for the day / 100. Or could just use some arbitrary number, or have users vote the day before. Not sure, fun to experiment!
 - **Comments:** Add comments to videos. Again, limiting the number of comments somehow.
 - **Compression:** Might be helpful for costs to compress/decompress information, especially videos, once a certain scale is hit. Not sure if worthwhile yet.
 - **Payments:** Switch to Lemon Squeezy or Polar for payment systems if eventually plan to add paid tiers for e.g. being able to post more videos per day.
