@@ -1,34 +1,36 @@
-# nothofagus
-Proof of concept vine clone with tiktok reccomendation system
+# Nothofagus
+
+Nothofagus is a proof-of-concept clone of Vine featuring a TikTok-inspired recommendation system.
 
 ## Specifications
 
-- max 5000 (? subject to change) videos
-- max 6 second mp4 video (4MB each, meaning only 20GB needed for 5000 vids)
-- using open source tiktok algorithm <https://github.com/bytedance/monolith>
-- using auth0 for users, with initial invite-only
-- populate db at start with some random favourite tiktoks - limit to 6 seconds <https://chromewebstore.google.com/detail/myfavett-download-all-tik/gmajiifkcmjkehmngbopoobeplhoegad?hl=en>
+- **Video Limit:** Up to 5000 videos (subject to change).
+- **Video Duration:** Each MP4 video is limited to 6 seconds.
+- **File Size:** Approximately 4MB per video, resulting in a maximum storage requirement of around 20GB for 5000 videos.
+- **Recommendation Engine:** Utilizes the open source [TikTok algorithm](https://github.com/bytedance/monolith).
+- **User Authentication:** Powered by Auth0 with an initial invite-only system.
+- **Database:** Options include SQL, JSON, or CSV. The choice will depend on the ease of querying video data.
+- **Machine Learning:** A Python-based module handles TikTok-inspired machine learning requests from the backend.
 
 ## Architecture
 
-- frontend/backend: Deno + Fresh
-- user auth: auth0, store users in Deno KV
-- database: SQL? store as JSON or CSV? what's easier to query videos for?
-- titkok ml: Python, takes requests from backend
+- **Frontend/Backend:** Built with Deno and the Fresh framework.
+- **User Authentication:** Implemented via Auth0, with user data stored in Deno KV.
+- **Database:** Evaluating options for optimal video query performance.
+- **Machine Learning:** A Python service processes TikTok-style recommendations.
 
-## Setup
+## Getting Started
 
-Your new Fresh project is ready to go. You can follow the Fresh "Getting
-Started" guide here: https://fresh.deno.dev/docs/getting-started
+For a more detailed guide on using Fresh, please refer to the [Fresh Getting Started Guide](https://fresh.deno.dev/docs/getting-started).
 
-### Usage
+### Prerequisites
 
-Make sure to install Deno: https://deno.land/manual/getting_started/installation
+Ensure that Deno is installed by following the instructions on the [Deno Getting Started Guide](https://deno.land/manual/getting_started/installation).
 
-Then start the project:
+### Running the Project
 
-``` bash
+To start the project with file watching enabled, execute the following command:
+
+```bash
 deno task start
 ```
-
-This will watch the project directory and restart as necessary.
