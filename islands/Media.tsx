@@ -1,14 +1,26 @@
 import { useRef, useState } from "preact/hooks";
 import * as Icons from "../components/Icons.tsx";
 
-export default function Media() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const src = "/api/video";
+interface MediaProps {
+  videoId?: string;
+}
 
+export default function Media({ videoId }: MediaProps) {
+  // get video element
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // set up states
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [isReported, setIsReported] = useState(false);
 
+  // set up video source
+  if (!videoId) {
+    videoId = "test" + Math.floor(Math.random() * 5);
+  }
+  const src = "/api/stream?video=" + videoId;
+
+  // toggle video play/pause
   const handleToggle = () => {
     if (isPlaying) {
       videoRef.current?.pause();
@@ -19,6 +31,7 @@ export default function Media() {
     }
   };
 
+  // like video
   const handleLike = (e: MouseEvent) => {
     e.stopPropagation();
     if (isLiked) return;
@@ -28,6 +41,7 @@ export default function Media() {
     console.log("Video liked!");
   };
 
+  // copy URL to clipboard
   const handleShare = (e: MouseEvent) => {
     e.stopPropagation();
     navigator.clipboard.writeText(globalThis.location.href)
@@ -39,6 +53,7 @@ export default function Media() {
       });
   };
 
+  // report video
   const handleReport = (e: MouseEvent) => {
     e.stopPropagation();
     if (isReported) return;

@@ -4,9 +4,11 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_video from "./routes/api/video.ts";
+import * as $api_stream from "./routes/api/stream.ts";
 import * as $index from "./routes/index.tsx";
-import * as $videos from "./routes/videos.tsx";
+import * as $videos_video_ from "./routes/videos/[video].tsx";
+import * as $videos_feed from "./routes/videos/feed.tsx";
+import * as $Feed from "./islands/Feed.tsx";
 import * as $Media from "./islands/Media.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -14,11 +16,13 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/video.ts": $api_video,
+    "./routes/api/stream.ts": $api_stream,
     "./routes/index.tsx": $index,
-    "./routes/videos.tsx": $videos,
+    "./routes/videos/[video].tsx": $videos_video_,
+    "./routes/videos/feed.tsx": $videos_feed,
   },
   islands: {
+    "./islands/Feed.tsx": $Feed,
     "./islands/Media.tsx": $Media,
   },
   baseUrl: import.meta.url,

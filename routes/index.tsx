@@ -11,7 +11,7 @@ export default function Home() {
 
       <Layout.Page>
         <Layout.Element>
-          <Button href="/videos" text="Start Watching">
+          <Button href="/videos/feed" text="Start Watching">
           </Button>
         </Layout.Element>
       </Layout.Page>

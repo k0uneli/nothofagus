@@ -8,10 +8,10 @@ import {
 
 function getVideoSrc(req: Request): string {
   try {
-    let videoId = null;
-    if (req.url.includes("video")) {
-      videoId = req.url.split("video=")[1];
-    } else {
+    const url = new URL(req.url);
+    let videoId = url.searchParams.get("video");
+
+    if (!videoId) {
       videoId = "test" + Math.floor(Math.random() * 5);
     }
     return `${VIDEO_PATH}${videoId}.mp4`;
