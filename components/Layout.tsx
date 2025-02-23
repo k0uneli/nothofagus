@@ -1,6 +1,6 @@
 import { ComponentChildren } from "preact";
 import * as Text from "../components/Text.tsx";
-import Button, { ButtonProps } from "../components/Button.tsx";
+import Button from "../components/Button.tsx";
 import * as Icons from "../components/Icons.tsx";
 
 const SCREEN_COLOUR = "bg-black";
@@ -23,7 +23,7 @@ export function Page({
 }: PageProps) {
   return (
     <div class={`flex flex-col min-h-screen ${colour}`}>
-      <div class="flex-grow flex items-center justify-center mb-9 px-4 sm:px-8 pt-8 pb-8">
+      <div class="flex-grow flex items-center justify-center px-4 sm:px-8 pt-8 pb-8">
         {children}
       </div>
     </div>
@@ -138,7 +138,7 @@ export function Footer({
       <footer
         class={`flex flex-col items-center w-auto ${colour} ${textColour}`}
       >
-        <div class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 p-4 md:p-2 pb-16 md:pb-2">
+        <div class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 p-4 md:p-2 pb-4 md:pb-2 py-2">
           {isBeta
             ? (
               <>
