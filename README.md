@@ -1,6 +1,6 @@
 # Nothofagus
 
-Nothofagus is a proof-of-concept clone of Vine featuring a TikTok-inspired recommendation system, with unique r/place-style user interaction.
+Nothofagus is a proof-of-concept clone of Vine featuring a TikTok-inspired recommendation system, with unique [r/place](https://www.reddit.com/r/place/)-style user interaction.
 
 ## Specifications
 
