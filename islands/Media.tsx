@@ -1,5 +1,6 @@
 import { useRef, useState } from "preact/hooks";
 import * as Icons from "../components/Icons.tsx";
+import Toastify from "npm:toastify-js";
 
 export default function Media() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -24,8 +25,13 @@ export default function Media() {
 
   const handleShare = (e: MouseEvent) => {
     e.stopPropagation();
-    // TODO: copy video link to clipboard
-    console.log("Video shared!");
+    navigator.clipboard.writeText(globalThis.location.href)
+      .then(() => {
+        console.log("URL copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy URL:", err);
+      });
   };
 
   const handleReport = (e: MouseEvent) => {
