@@ -4,7 +4,7 @@ import * as Icons from "../components/Icons.tsx";
 export default function Media() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const src = "/api/video";
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const handleToggle = () => {
     if (isPlaying) {
