@@ -9,7 +9,7 @@ export default function Error404() {
       <Head>
         <title>404 - Page not found</title>
       </Head>
-      <Layout.Page disableFooter>
+      <Layout.Page>
         <Layout.Element>
           <Text.Title>404 - Page not found</Text.Title>
           <br />
