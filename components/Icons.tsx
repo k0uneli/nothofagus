@@ -26,7 +26,7 @@ export function Like() {
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="feather feather-heart"
+      class="feather feather-heart hover:fill-red-500"
     >
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
       </path>
@@ -46,7 +46,7 @@ export function Share() {
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="feather feather-share-2"
+      class="feather feather-share-2 hover:fill-green-500"
     >
       <circle cx="18" cy="5" r="3"></circle>
       <circle cx="6" cy="12" r="3"></circle>
@@ -69,7 +69,7 @@ export function Report() {
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="feather feather-alert-triangle"
+      class="feather feather-alert-triangle hover:fill-orange-600"
     >
       <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
       </path>
